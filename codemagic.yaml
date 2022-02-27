@@ -33,7 +33,7 @@ workflows:
         test_report: app/build/test-results/**/*.xml
       - name: Codecov upload
         script: | 
-           #!/bin/sh
+           #!/bin/bash
            curl -Os https://uploader.codecov.io/latest/macos/codecov
            chmod +x codecov
            ./codecov -t ${CODECOV_TOKEN} -f "app/build/test-results/**/*.xml"
