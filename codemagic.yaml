@@ -29,5 +29,8 @@ workflows:
       - name: Testing
         script: |
           ./gradlew test
+        test_report: app/build/test-results/**/*.xml
+
     artifacts:
       - app/build/outputs/**/*.apk
+      - app/build/test-results/**/*.xml
