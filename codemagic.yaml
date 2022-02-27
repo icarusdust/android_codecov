@@ -36,7 +36,7 @@ workflows:
            #!/bin/sh
            curl -Os https://uploader.codecov.io/latest/macos/codecov
            chmod +x codecov
-           ./codecov -t ${CODECOV_TOKEN}
+           ./codecov -t ${CODECOV_TOKEN} -f "app/build/test-results/**/*.xml"
     artifacts:
       - app/build/outputs/**/*.apk
       - app/build/test-results/**/*.xml
