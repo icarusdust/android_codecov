@@ -26,5 +26,8 @@ workflows:
       - name: Build Android production release
         script: |
           ./gradlew assembleRelease
+      - name: Testing
+        script: |
+          ./gradlew test
     artifacts:
       - app/build/outputs/**/*.apk
