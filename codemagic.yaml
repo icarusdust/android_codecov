@@ -45,5 +45,5 @@ workflows:
         - name: GCP
           script: |
             curl -X POST --data-binary @app/build/outputs/apk/debug/app-debug.apk \
-            -H "Authorization: Bearer ya29.A0ARrdaM9o2IMG4mEgPp4uXkyTSk_D4KfjcthBUyFPNjO1JFmVDg7yXO55ygJLbYK5Qjsk0jgFEUADeqKlXFjJPbnEB7hEMx_g4VprySc8X_jQzkpDch2sID4Jw_IQ1EH-osizCn8YqXpRtAEfAdlgCgyza8dW \
+            -H "Authorization: Bearer ya29.A0ARrdaM9o2IMG4mEgPp4uXkyTSk_D4KfjcthBUyFPNjO1JFmVDg7yXO55ygJLbYK5Qjsk0jgFEUADeqKlXFjJPbnEB7hEMx_g4VprySc8X_jQzkpDch2sID4Jw_IQ1EH-osizCn8YqXpRtAEfAdlgCgyza8dW"\
             "https://storage.googleapis.com/upload/storage/v1/b/my_bucket/o?uploadType=media&name=my_bucket"
