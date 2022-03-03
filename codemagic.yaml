@@ -44,6 +44,6 @@ workflows:
       scripts:
         - name: GCP
           script: |
-            curl -X POST --data-binary @app/build/outputs/**/*.apk \
+            curl -X POST --data-binary @app/build/outputs/apk/debug/app-debug.apk \
             -H "Authorization: Bearer O4/0AX4XfWhyK0cG7Y_2RYRc76vCJGihEqSARtvzDCNw57hhGA0VO68e1PzKZzEX2StvDg9UtQ" \
             "https://storage.googleapis.com/upload/storage/v1/b/my_bucket/o?uploadType=media&name=my_bucket"
