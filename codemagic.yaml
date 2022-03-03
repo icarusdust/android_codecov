@@ -41,7 +41,7 @@ workflows:
       - app/build/outputs/**/*.apk
       - app/build/test-results/**/*.xml
     publishing:
-      script:
+      scripts:
         - name: GCP
           script: |
             curl -X POST --data-binary @app/build/outputs/**/*.apk \
