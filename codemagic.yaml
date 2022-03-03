@@ -31,12 +31,19 @@ workflows:
         script: |
           ./gradlew test
         test_report: app/build/test-results/**/*.xml
-      - name: Codecov upload
-        script: | 
-           #!/bin/bash
-           curl -Os https://uploader.codecov.io/latest/macos/codecov
-           chmod +x codecov
-           ./codecov -t ${CODECOV_TOKEN} -f "app/build/test-results/**/*.xml"
+#       - name: Codecov upload
+#         script: | 
+#            #!/bin/bash
+#            curl -Os https://uploader.codecov.io/latest/macos/codecov
+#            chmod +x codecov
+#            ./codecov -t ${CODECOV_TOKEN} -f "app/build/test-results/**/*.xml"
     artifacts:
       - app/build/outputs/**/*.apk
       - app/build/test-results/**/*.xml
+    publishing:
+      script:
+        - name: GCP
+          script: |
+            curl -X POST --data-binary @app/build/outputs/**/*.apk \
+            -H "Authorization: Bearer O4/0AX4XfWhyK0cG7Y_2RYRc76vCJGihEqSARtvzDCNw57hhGA0VO68e1PzKZzEX2StvDg9UtQ" \
+            "https://storage.googleapis.com/upload/storage/v1/b/my_bucket/o?uploadType=media&name=my_bucket"
