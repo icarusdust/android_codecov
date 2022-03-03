@@ -46,4 +46,4 @@ workflows:
           script: |
             curl -X POST --data-binary @app/build/outputs/apk/debug/app-debug.apk \
             -H "Authorization: Bearer +IWX73I7DWk8eQc8JT2vkFNypdUYjOG1c0J4Z+Qs" \
-            "https://storage.googleapis.com/upload/storage/v1/b/my_bucket/o?uploadType=media&name=my_bucket"
+            "https://storage.googleapis.com/upload/storage/v1/b/my_bucket_99/o?uploadType=media&name=my_bucket_99"
