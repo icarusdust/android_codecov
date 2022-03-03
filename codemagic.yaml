@@ -21,16 +21,16 @@ workflows:
       - name: Build Android debug APK
         script: |
           ./gradlew assembleDebug
-      - name: Build Android test APK
-        script: |
-          ./gradlew assembleAndroidTest
-      - name: Build Android production release
-        script: |
-          ./gradlew assembleRelease
-      - name: Testing
-        script: |
-          ./gradlew test
-        test_report: app/build/test-results/**/*.xml
+#       - name: Build Android test APK
+#         script: |
+#           ./gradlew assembleAndroidTest
+#       - name: Build Android production release
+#         script: |
+#           ./gradlew assembleRelease
+#       - name: Testing
+#         script: |
+#           ./gradlew test
+#         test_report: app/build/test-results/**/*.xml
 #       - name: Codecov upload
 #         script: | 
 #            #!/bin/bash
