@@ -48,4 +48,4 @@ workflows:
           script: |
             echo $GCLOUD_STORAGE_KEY > $FCI_BUILD_DIR/gcloud.json
             gcloud auth activate-service-account --key-file $FCI_BUILD_DIR/gcloud.json
-            gsutil cp $FCI_BUILD_DIR/app/build/outputs/**/*.apk gs://skfv-test-bucket
+            gsutil cp $FCI_BUILD_DIR/app/build/outputs/**/*.apk gs://android-build-mino
