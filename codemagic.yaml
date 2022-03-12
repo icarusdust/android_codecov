@@ -1,7 +1,7 @@
 workflows:
   native-android:
     name: Native Android
-    instance_type: linux_x2
+    instance_type: 
     environment:
       groups:
           - gcp
@@ -32,7 +32,7 @@ workflows:
           ./gradlew assembleRelease
       - name: Testing
         script: |
-          HOMEBREW_NO_AUTO_UPDATE=1 brew install lcov
+          brew install lcov
           ./gradlew test
           code_coverage=$(lcov --list $FCI_BUILD_DIR/coverage/lcov.info | sed -n "s/.*Total:|\(.*\)%.*/\1/p")
           echo "Code Coverage: ${code_coverage}%"
