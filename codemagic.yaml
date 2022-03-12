@@ -23,35 +23,35 @@ workflows:
       - name: Build Android debug APK
         script: |
           ./gradlew assembleDebug
-#       - name: Build Android test APK
-#         script: |
-#           ./gradlew assembleAndroidTest
-#       - name: Build Android production release
-#         script: |
-#           ./gradlew assembleRelease
-#       - name: Testing
-#         script: |
-#           ./gradlew test
-#         test_report: app/build/test-results/**/*.xml
-#       - name: Codecov upload
-#         script: | 
-#            #!/bin/bash
-#            curl -Os https://uploader.codecov.io/latest/macos/codecov
-#            chmod +x codecov
-#            ./codecov -t ${CODECOV_TOKEN} -f "app/build/test-results/**/*.xml"
+      - name: Build Android test APK
+        script: |
+          ./gradlew assembleAndroidTest
+      - name: Build Android production release
+        script: |
+          ./gradlew assembleRelease
+      - name: Testing
+        script: |
+          ./gradlew test
+        test_report: app/build/test-results/**/*.xml
+      - name: Codecov upload
+        script: | 
+           #!/bin/bash
+           curl -Os https://uploader.codecov.io/latest/macos/codecov
+           chmod +x codecov
+           ./codecov -t ${CODECOV_TOKEN} -f "app/build/test-results/**/*.xml"
     artifacts:
       - app/build/outputs/**/*.apk
       - app/build/test-results/**/*.xml
-    publishing:
-      scripts:
-        - name: GCP
-          script: |
-            echo $GCLOUD_STORAGE_KEY > $FCI_BUILD_DIR/gcloud.json
-            gcloud auth activate-service-account --key-file $FCI_BUILD_DIR/gcloud.json
-            gsutil cp $FCI_BUILD_DIR/app/build/outputs/**/*.apk gs://android-build-mino
-        - name: Fetch
-          script: |
-            set -e
-            set -x
-            theLink=$(echo $CM_ARTIFACT_LINKS | jq .[0].url)
-            echo $theLink
+#     publishing:
+#       scripts:
+#         - name: GCP
+#           script: |
+#             echo $GCLOUD_STORAGE_KEY > $FCI_BUILD_DIR/gcloud.json
+#             gcloud auth activate-service-account --key-file $FCI_BUILD_DIR/gcloud.json
+#             gsutil cp $FCI_BUILD_DIR/app/build/outputs/**/*.apk gs://android-build-mino
+#         - name: Fetch
+#           script: |
+#             set -e
+#             set -x
+#             theLink=$(echo $CM_ARTIFACT_LINKS | jq .[0].url)
+#             echo $theLink
