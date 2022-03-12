@@ -32,8 +32,8 @@ workflows:
 #           ./gradlew assembleRelease
       - name: Testing
         script: |
-          brew install lcov
-          ./gradlew test --coverage 
+          HOMEBREW_NO_AUTO_UPDATE=1brew install lcov
+          ./gradlew test 
           code_coverage=$(lcov --list $FCI_BUILD_DIR/coverage/lcov.info | sed -n "s/.*Total:|\(.*\)%.*/\1/p")
           echo "Code Coverage: ${code_coverage}%"
           if (( $(echo "$code_coverage < $CODE_COVERAGE_TARGET" | bc) )); then exit 1; fi
