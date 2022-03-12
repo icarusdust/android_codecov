@@ -12,6 +12,7 @@ workflows:
           CM_KEYSTORE_PATH: /tmp/keystore.keystore
           CM_KEY_ALIAS_USERNAME: Encrypted(Z0FBQUFBQmcxS0hNSjlhM3dySkxIdlJZMnFlcjc2cUwxLXdrTWFiN0N0TVc1SDhiUmZ4U1RsSnFfb29nR3N6aVFwSDJhLVBBeUZySmJsQ3Q4R0tOQzl1RUpYckZuVWhBY0E9PQ==) # <-- Put your encrypted keystore alias username here
           CODECOV_TOKEN: 53285802-f961-49d3-95f8-a977b7f7d87a
+          CODE_COVERAGE_TARGET: 95
       xcode: 13.2
     scripts:
       - name: Set Android SDK location
@@ -31,7 +32,11 @@ workflows:
           ./gradlew assembleRelease
       - name: Testing
         script: |
+          HOMEBREW_NO_AUTO_UPDATE=1 brew install lcov
           ./gradlew test
+          code_coverage=$(lcov --list $FCI_BUILD_DIR/coverage/lcov.info | sed -n "s/.*Total:|\(.*\)%.*/\1/p")
+          echo "Code Coverage: ${code_coverage}%"
+          if (( $(echo "$code_coverage < $CODE_COVERAGE_TARGET" | bc) )); then exit 1; fi
         test_report: app/build/test-results/**/*.xml
       - name: Codecov upload
         script: | 
